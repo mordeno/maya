@@ -1,3 +1,30 @@
 spring:
   application:
     name: sendmoney
+
+  datasource:
+    url: jdbc:h2:file:./data/database;
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true # waits for the datasource to be initialized before running data.sql
+
+  sql:
+    init:
+      mode: always
