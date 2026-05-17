@@ -5,6 +5,8 @@ services:
       - "8080:8080"
     volumes:
       - h2-data:/data # mounts /data inside the container
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
 
 volumes:
   h2-data:
