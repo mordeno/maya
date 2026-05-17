@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - h2-data:/data # mounts /data inside the container
+
+volumes:
+  h2-data:
