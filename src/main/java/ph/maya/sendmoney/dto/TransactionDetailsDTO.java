@@ -11,5 +11,7 @@ public record TransactionDetailsDTO(
     Long receiverId,
     String receiverName,
     String status,
-    LocalDateTime date
+    LocalDateTime date,
+    String currency,
+    String idempotencyKey
 ) {}

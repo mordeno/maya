@@ -25,6 +25,9 @@ public class Account {
     @Column(name = "balance", nullable = false, precision = 15, scale = 2)
     private BigDecimal balance = BigDecimal.ZERO;
 
+    @Column(name = "on_hold", nullable = false, precision = 15, scale = 2)
+    private BigDecimal onHold = BigDecimal.ZERO; // simulate pending transactions
+
     @Column(name = "daily_limit", nullable = false, precision = 15, scale = 2)
     private BigDecimal dailyLimit = BigDecimal.ZERO;
 

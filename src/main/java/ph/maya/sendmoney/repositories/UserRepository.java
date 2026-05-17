@@ -20,6 +20,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
         FROM Contact c
         JOIN c.contact cu
         WHERE c.user.id = :userId
-        """)
+    """)
     List<ContactDTO> findContactsByUserId(@Param("userId") Long userId);
 }

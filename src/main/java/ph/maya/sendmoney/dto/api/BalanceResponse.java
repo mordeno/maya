@@ -5,5 +5,4 @@ public record BalanceResponse(
     String balance,
     String dailyLimit,
     String currency
-) {
-}
+) {}

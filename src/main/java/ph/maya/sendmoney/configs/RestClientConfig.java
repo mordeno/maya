@@ -1,5 +1,6 @@
 package ph.maya.sendmoney.configs;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,15 +9,12 @@ import org.springframework.web.client.RestClient;
 import ph.maya.sendmoney.exceptions.ContactsProviderException;
 import ph.maya.sendmoney.properties.ContactsProperties;
 
+@RequiredArgsConstructor
 @Configuration
 @EnableConfigurationProperties(ContactsProperties.class)
 public class RestClientConfig {
 
     private final ContactsProperties contactsProperties;
-
-    public RestClientConfig(ContactsProperties contactsProperties) {
-        this.contactsProperties = contactsProperties;
-    }
 
     @Bean
     public RestClient recipientClient() {

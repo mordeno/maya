@@ -23,14 +23,33 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
         )
         FROM Account a
         WHERE a.user.id = :userId
-        """)
+    """)
     Optional<AccountBalanceDTO> findBalanceByUserId(@Param("userId") Long userId);
 
+    // Eager fetch User to use in @Transactional service
+    // Lock only applicable with concurrent access
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("""
         SELECT a
         FROM Account a
-        WHERE a.user.id = :userId
-        """)
-    Optional<Account> findByUserIdWithLock(@Param("userId") Long userId);
+        JOIN FETCH a.user u
+        WHERE u.id = :userId
+    """)
+    Optional<Account> findSenderAccountWithLock(@Param("userId") Long userId);
+
+    // Eager fetch User to use in @Transactional service
+    // Lock only applicable with concurrent access
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("""
+        SELECT a
+        FROM Account a
+        JOIN FETCH a.user u
+        WHERE u.id = :receiverUserId
+        AND EXISTS (
+            SELECT c FROM Contact c
+            WHERE c.user.id = :senderUserId
+            AND c.contact.id = :receiverUserId
+        )
+    """)
+    Optional<Account> findReceiverAccountWithLock(@Param("senderUserId") Long senderUserId, @Param("receiverUserId") Long receiverUserId);
 }

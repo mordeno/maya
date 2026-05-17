@@ -20,11 +20,11 @@ public class TransactionEvent {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transaction_id", nullable = false)
-    private Transaction transactionId;
+    private Transaction transaction;
 
     @Column(name = "event_type", nullable = false, length = 20)
     private String eventType; // "CREATED", "COMPLETED", "FAILED"
 
-    @Column(name = "event_date", nullable = false)
+    @Column(name = "date", nullable = false)
     LocalDateTime date;
 }
