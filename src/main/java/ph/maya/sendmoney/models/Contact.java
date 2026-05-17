@@ -5,14 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "wallets")
-public class Wallet {
+@Table(
+    name = "contacts",
+    uniqueConstraints = { @UniqueConstraint(columnNames = {"user_id", "contact_user_id"}) }
+)
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +23,7 @@ public class Wallet {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "balance", nullable = false, precision = 15, scale = 2)
-    private BigDecimal balance;
-
-    @Column(name = "currency", nullable = false, length = 3)
-    private String currency;
-
-    @Column(name = "daily_limit", nullable = false, precision = 15, scale = 2)
-    private BigDecimal dailyLimit;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contact_user_id", nullable = false)
+    private User contact;
 }

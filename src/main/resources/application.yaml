@@ -28,3 +28,9 @@ spring:
   sql:
     init:
       mode: always
+
+# Mock external source for recipients
+contacts:
+  jsonplaceholder:
+    base-url: https://jsonplaceholder.typicode.com
+

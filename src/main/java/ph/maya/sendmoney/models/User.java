@@ -22,17 +22,17 @@ public class User {
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Wallet> wallets = new ArrayList<>();
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Account> accounts = new ArrayList<>();
 
     // Helper method to keep bidirectional relationship in sync
-    public void addWallet(Wallet wallet) {
-        wallets.add(wallet);
-        wallet.setUser(this);
+    public void addAccount(Account account) {
+        accounts.add(account);
+        account.setUser(this);
     }
 
-    public void removeWallet(Wallet wallet) {
-        wallets.remove(wallet);
-        wallet.setUser(null);
+    public void removeAccount(Account account) {
+        accounts.remove(account);
+        account.setUser(null);
     }
 }
