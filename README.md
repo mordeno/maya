@@ -155,9 +155,11 @@ Example Response:
 }
 ```
 ## Tables
+`users`, `accounts`, and `contacts` tables are populated at start-up using data from `/resources/data.sql`
 - `accounts` - stores user account information including balance and daily limit.
 - `transactions` - stores transaction records including sender, receiver, amount, type, and status.
 - `journalEntries` - stores journal entries for double-entry bookkeeping.
 - `transactionEvents` - stores events related to transactions for auditing and tracking purposes.
 - `users` - stores user information including id and name.
 - `contacts` - stores user contacts for easy lookup when sending money.
+
